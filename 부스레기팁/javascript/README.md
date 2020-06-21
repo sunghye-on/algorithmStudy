@@ -20,3 +20,23 @@ let newList = list.splice(-2, 1);
 let newList = list.splice(2)
 ```
 
+
+
+## indexOf() 과 search()
+
+### indexOf()
+
+indexOf는 메서드는 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환하고 존재하지 않으면 -1을 반환합니다.
+
+ ===을 사용하여 검색요소를 배열과 비교한다.
+
+### search()
+
+search는 메서드는 정규 표현식과 String 객체간에 같은 것을 찾기
+위한 검색을 실행한다.
+
+즉 매개변수로 정규표현식이 들어가며 그것으로 검색한다.
+
+### 결론
+
+정규식을 사용하는 검색은 search가 빠르고 단순한 검색은 indexOf 가빠르다.
