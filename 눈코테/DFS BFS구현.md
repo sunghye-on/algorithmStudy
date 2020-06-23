@@ -119,3 +119,42 @@ console.log("답 : ", DFS(graph, 100));
 
 
 
+# BFS구현
+
+## 너비우선탐색
+
+위와 비슷한 원리로 탐색을 진행한다. stack을 사용하는 DFS에 비해 BFS는 queue를 사용한다.
+
+위와 같은 graph를 사용할때  코드는 아래와 같다.
+
+```javascript
+const BFS = (graph, start) => {
+  let q = [start];
+  let path = [];
+
+  while (q) {
+    let node = 0;
+    node = q.pop();
+
+    if (!path.includes(node)) {
+      path.push(node);
+    }
+    let nextNodes = new Set(
+      [...graph[node]].filter((s) => !new Set(path).has(s))
+    );
+
+    for (const g of nextNodes) {
+      // 큐이기 때문에 unshift를 해줌
+      q.unshift(g);
+    }
+    console.log("방문", path);
+    console.log("q", q);
+    if (q.length == 0) {
+      break;
+    }
+  }
+  return path;
+};
+console.log("답 : ", BFS(graph, 100));
+```
+
