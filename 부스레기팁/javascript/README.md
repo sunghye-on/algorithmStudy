@@ -1,6 +1,6 @@
 # 부스레기 팁 javascript
 
-기본적인 것들
+## 기본적인 부스레기
 
 ```javascript
 // shift , unshift / push, pop을 이용한 부스레기
@@ -18,6 +18,13 @@ let newList = list.splice(2,1,"test");
 let newList = list.splice(-2, 1);
 //2번 인덱스를 포함해서 이후의 모든 요소 제거
 let newList = list.splice(2)
+
+//배열의 값들을 합쳐주는 join
+let a = ['바람', '비', '불'];
+let myVar1 = a.join();      // myVar1에 '바람,비,불'을 대입
+let myVar2 = a.join(', ');  // myVar2에 '바람, 비, 불'을 대입
+let myVar3 = a.join(' + '); // myVar3에 '바람 + 비 + 불'을 대입
+let myVar4 = a.join('');    // myVar4에 '바람비불'을 대입
 ```
 
 
@@ -40,3 +47,43 @@ search는 메서드는 정규 표현식과 String 객체간에 같은 것을 찾
 ### 결론
 
 정규식을 사용하는 검색은 search가 빠르고 단순한 검색은 indexOf 가빠르다.
+
+
+
+## 배열을 90도 회전 하기
+
+```javascript
+const arr1 = [
+  [0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 3],
+  [0, 0, 0, 0, 4],
+  [0, 2, 0, 0, 2],
+  [4, 5, 0, 2, 0],
+];
+// 반시계방향으로 90도 회전
+const arr2 = [
+  [1, 3, 4, 2, 0],
+  [0, 0, 0, 0, 2],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 2, 5],
+  [0, 0, 0, 0, 4],
+];
+```
+
+arr1을 arr2처럼 회전한 값을 resultArr에 저장하기 위한 코드
+
+```javascript
+// 배열의 크기 만큼 빈 배열을 선언
+for (let i = 0; i < arr1.length; i++) {
+  resultArr[i] = new Array(arr1[0].length);
+}
+
+for (let i = 0; i < arr1.length; i++) {
+  for (let k = 0; k < arr1[0].length; k++) {
+    resultArr[i][k] = arr1[k][arr1[0].length - 1 - i];
+  }
+}
+// 확인
+console.log(resultArr);
+```
+
