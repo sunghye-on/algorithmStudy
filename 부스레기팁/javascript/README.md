@@ -87,3 +87,55 @@ for (let i = 0; i < arr1.length; i++) {
 console.log(resultArr);
 ```
 
+
+
+
+
+# call / apply / bind
+
+## call
+
+함수를 호출하면서 call을 사용하고 this로 사용할 객체를 넘기면 해당 함수가 주어진 객체의 메소드인 것 처럼 사용할 수 있다. 아래의 예시를 확인하자
+
+```javascript
+const dongdong = {
+  name: "dongdong",
+};
+
+const sungsung = {
+  name: "sungsung",
+};
+
+//이 함수는 어떤 객체에도 연결되지 않았지만 this를 사용함.
+function sayHi() {
+  return `Hello, I'm ${this.name}`;
+}
+
+sayHi(); // 'Hello, I'm undefined' - this는 어디에도 묶이지 않음
+sayHi.call(dongdong); // 'Hello, I'm dongdong'     - this는 dongdong
+sayHi.call(sungsung); // 'Hello, I'm Madeline'  - this는 sungsung
+
+```
+
+
+
+## apply
+
+함수 매개변수를 처리하는 방법을 제외하면 call과 일치한다. 큰 차이점이라면 apply는 매개변수를 배열로 받는다. 흔하게 사용하는 예시로 Math.min/max가 있다.
+
+```javascript
+Math.max.apply(null, list);
+// 혹은 ES6문법의 spread연산자를 이용해서 아래와 같이 사용할 수 있다.
+Math.max/min(...list);
+```
+
+
+
+
+
+## bind
+
+bind를 사용하면 함수의 this 값을 영구히 바꿀 수 있다. 메서드를 이리저리 옮기면서 호출할 때 this 값은 항상 bruce가 되게끔, call이나 apply, 다른 bind와 함께 호출하더라도 this 값이 변경된 값이 되도록 하려면 bind를 사용한다.
+
+
+
