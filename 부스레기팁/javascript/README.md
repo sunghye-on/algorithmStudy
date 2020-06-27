@@ -139,3 +139,71 @@ bind를 사용하면 함수의 this 값을 영구히 바꿀 수 있다. 메서�
 
 
 
+
+
+# reduce
+
+## 설명
+
+reduce() 메서드는 배열의 각 요소에 대해 주어진 **리듀서**(reducer) **함수**를 실행하고, 하나의 결과값을 반환합니다.
+
+**리듀서** 함수는 네 개의 인자를 가집니다.
+
+1. 누산기accumulator (acc)
+2. 현재 값 (cur)
+3. 현재 인덱스 (idx)
+4. 원본 배열 (src)
+
+리듀서 함수의 반환 값은 누산기에 할당되고, 누산기는 순회 중 유지되므로 결국 최종 결과는 하나의 값이 됩니다.
+
+
+
+## 간단한 예시
+
+```javascript
+const list = [10, 20, 30, 40, 1, 2, 3, 4, 11, 45];
+
+// 각각의 값을 더하는 함수
+const func = (accumulator, currentValue) => {
+  console.log(accumulator, currentValue);
+  return accumulator + currentValue;
+};
+console.log(list.reduce(func));
+
+// 중첩된 배열 펼치기
+const listlist = [[0, 1],[2, 3],[4, 5]];
+
+const func2 = (accumulator, currentValue) => {
+  return accumulator.concat(currentValue);
+};
+console.log(listlist.reduce(func2));
+```
+
+## 활용하기
+
+```javascript
+// 객체 속성으로 분류하기
+let people = [
+  { name: "Alice", age: 21 },
+  { name: "Max", age: 20 },
+  { name: "Jane", age: 20 },
+  { name: "mikle", age: 22 },
+  { name: "tuyr", age: 21 },
+];
+
+function groupBy(objectArray, property) {
+  return objectArray.reduce(function (acc, obj) {
+    let key = obj[property];
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
+}
+
+let groupedPeople = groupBy(people, "age");
+console.log(groupedPeople);
+```
+
+[더보기](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
